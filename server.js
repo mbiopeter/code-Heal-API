@@ -5,11 +5,15 @@ import { db } from "./db.js";
 import bodyParser from 'body-parser';
 import { AuthRouter } from './middleware/login.middleware.js';
 import { ErrorHandler } from './erroTracker/login.error.js';
+import { sessionMiddleware } from './services/login.services.js';
+
 dotenv.config();
 const app = express();
+app.use(sessionMiddleware);
 
 app.use(bodyParser.json());
 app.use(cors());
+
 app.use(AuthRouter);
 app.use(ErrorHandler);
 
@@ -18,7 +22,7 @@ db.query(`
 SELECT 1
 `)
 .then(data => { 
-    app.listen(port, (req,res) => {
+    app.listen(port, () => {
         console.log(`server listening at http://localhost:${port}`);
     })
 })
