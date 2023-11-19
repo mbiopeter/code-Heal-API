@@ -4,8 +4,8 @@ export const getUserCredentials = async (FullName, Password) => {
   const query = `
     SELECT * 
     FROM users 
-    WHERE FullName = ? AND 
-    password = ? 
+    WHERE FullName = ? 
+    AND password = ? 
   `;
 
   try {
