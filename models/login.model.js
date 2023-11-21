@@ -1,16 +1,20 @@
 import {db} from '../db.js';
+import bcrypt from 'bcrypt'
 
 export const getUserCredentials = async (FullName, Password) => {
   const query = `
     SELECT * 
     FROM users 
     WHERE FullName = ? 
-    AND password = ? 
   `;
 
   try {
-    const [result] = await db.query(query, [FullName, Password]);
-    return result;
+    const [result] = await db.query(query, [FullName])
+     if(await bcrypt.compare(Password, result[0].password)){
+      return result;
+    } 
+    console.log( result[0].Password);
+
   } 
   catch (err) {
     throw err;

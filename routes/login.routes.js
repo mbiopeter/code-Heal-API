@@ -7,7 +7,8 @@ export const router = express.Router();
 router.post('/', ControlUserCredentials, (req, res) => {
   try {
     res.json({ message: 'Login successful', user: req.FullName });
-  } catch (err) {
+  } 
+  catch (err) {
     throw err
   }
 });

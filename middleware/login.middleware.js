@@ -3,4 +3,4 @@ import express from 'express';
 
 export const AuthRouter = express.Router();
 
-AuthRouter.use('/login',router)
+AuthRouter.use('/login',router);
