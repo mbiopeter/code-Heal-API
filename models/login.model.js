@@ -13,7 +13,6 @@ export const getUserCredentials = async (FullName, Password) => {
      if(await bcrypt.compare(Password, result[0].password)){
       return result;
     } 
-    console.log( result[0].Password);
 
   } 
   catch (err) {
